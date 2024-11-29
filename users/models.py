@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
+
 
 class User(AbstractUser):
     username = None
@@ -19,6 +21,9 @@ class User(AbstractUser):
     )
     token = models.CharField(
         max_length=100, verbose_name="Токен", null=True, blank=True
+    )
+    tg_chat_id = models.CharField(
+        max_length=50, verbose_name="Телеграм chat-id", null=True, blank=True
     )
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
