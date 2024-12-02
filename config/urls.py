@@ -21,7 +21,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("habits/", include("habits.urls", namespace="habits")),
     path("users/", include("users.urls", namespace="users")),
-path(
+    path(
         "swagger<format>/", schema_view.without_ui(cache_timeout=0), name="schema-json"
     ),
     path(
@@ -30,5 +30,4 @@ path(
         name="schema-swagger-ui",
     ),
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
-
 ]

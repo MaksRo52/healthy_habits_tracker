@@ -33,6 +33,7 @@ class DurationValidator:
 
 class RelatedHabitValidator:
     """В связанные привычки могут попадать только привычки с признаком приятной привычки."""
+
     def __init__(self, field):
         self.field = field
 

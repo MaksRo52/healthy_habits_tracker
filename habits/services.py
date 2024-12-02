@@ -2,7 +2,7 @@ import requests
 from django.conf import settings
 from django.utils.timezone import localtime
 from rest_framework import status
-from config import settings
+
 
 def send_telegram(habit):
     local_habit_time = localtime(habit.time)
