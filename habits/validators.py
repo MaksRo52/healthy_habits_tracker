@@ -31,9 +31,8 @@ class DurationValidator:
             raise ValidationError("Время выполнения должно быть не больше 2 минут.")
 
 
-class PleasantHabitValidator:
+class RelatedHabitValidator:
     """В связанные привычки могут попадать только привычки с признаком приятной привычки."""
-
     def __init__(self, field):
         self.field = field
 
@@ -44,7 +43,7 @@ class PleasantHabitValidator:
                 raise ValidationError("Поле заполнено не верно")
 
 
-class RelatedHabitValidator:
+class PleasantHabitValidator:
     """У приятной привычки не может быть вознаграждения или связанной привычки."""
 
     def __init__(self, field):
