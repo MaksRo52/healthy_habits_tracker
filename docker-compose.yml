@@ -7,7 +7,7 @@ services:
       - .env
     volumes:
       - ./pgdata:/var/lib/postgresql/data/
-      - ./pgdata/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+#      - ./pgdata/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
     healthcheck:
       test: [ "CMD-SHELL", "-c", "pg_isready -U $POSTGRES_USER" ]
       interval: 10s
