@@ -1,11 +1,14 @@
-# Python и Poetry идеально сочетаются.
-FROM python:3.8 as builder
-WORKDIR /app
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-COPY pyproject.toml poetry.lock ./
-RUN poetry install --no-dev # Установка без зависимостей для разработки
+FROM python:3 as builder
 
-# Финальный этап для Python, без Poetry.
-FROM python:3.8-slim
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /app
-COPY --from=builder /app ./
+
+RUN pip install poetry
+
+COPY pyproject.toml poetry.lock* /app/
+
+RUN poetry install --no-interaction --no-ansi
+
+COPY . /app/

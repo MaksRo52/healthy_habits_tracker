@@ -1,26 +1,27 @@
 version: '3'
 services:
   db:
-    image: postgres:17
+    image: postgres:16
     restart: on-failure
     env_file:
       - .env
-    expose:
-      - "5432"
     volumes:
-      - ./pgdata:/var/lib/postgresql/data/pgdata
+      - ./pgdata:/var/lib/postgresql/data/
+      - ./pgdata/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
     healthcheck:
       test: [ "CMD-SHELL", "-c", "pg_isready -U $POSTGRES_USER" ]
       interval: 10s
       timeout: 5s
       retries: 5
+    ports:
+      - "5433:5433"
 
   app:
     build: .
     tty: true
     ports:
       - "8000:8000"
-    command: python manage.py runserver 0.0.0.0:8000
+    command: poetry run python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     depends_on:
