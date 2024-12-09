@@ -7,14 +7,11 @@ from habits.services import send_telegram
 
 @shared_task
 def habit():
-
     now = timezone.now()
     print(f"Время: {now}")
-
     habits = Habit.objects.filter(
         time__lte=now, time__gt=now - timezone.timedelta(minutes=1)
     )
-
     print(f"Найдено привычек: {habits.count()}")
 
     for habit_item in habits:
