@@ -159,7 +159,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 #CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 CELERY_BEAT_SCHEDULE = {
-    'block_user': {
+    'habit_task': {
         'task': 'habits.tasks.habit',  # Путь к задаче
         'schedule': timedelta(seconds=10),  # Расписание выполнения задачи (например, каждые 10 минут)
     },
@@ -174,4 +174,11 @@ LOGGING = {
     "handlers": {"console": {"class": "logging.StreamHandler", "formatter": "default"}},
     "root": {"level": "INFO", "handlers": ["console"]},
     "loggers": {"django": {"handlers": ["console"], "propagate": False}},
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": os.getenv("LOCATION"),
+    }
 }

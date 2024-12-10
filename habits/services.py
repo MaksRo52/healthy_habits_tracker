@@ -1,5 +1,5 @@
-import requests
 from django.conf import settings
+from django.contrib.sites import requests
 from django.utils.timezone import localtime
 from rest_framework import status
 
